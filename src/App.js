@@ -10,7 +10,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 class App extends Component {
   state = {
     clicked: false,
-    action: ''
+    action: 'default'
   }
 
   clicked = (e) => {
@@ -21,7 +21,7 @@ class App extends Component {
 
   setAction = (e) => {
     this.setState({
-      action: e
+      action: e 
     })
   }
   render() {
@@ -32,7 +32,7 @@ class App extends Component {
             <div className="bg-light align-items-center justify-content-center flex-fill cover-container">
               <div className="col-12">
                 <div className="row">
-                  <Logo />
+                  <Logo action={this.setAction}/>
                   <Header />
                 </div>
               </div>

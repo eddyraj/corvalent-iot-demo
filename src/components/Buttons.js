@@ -2,13 +2,12 @@ import React from "react";
 import { useSpring, animated } from "react-spring";
 
 export default function Buttons(props) {
-  console.log("car has been clicked " + props.clicked);
   const transitions = useSpring({
     from: {
-      opacity: 0,
+      opacity: 0
     },
     to: {
-      opacity: 1,
+      opacity: 1
     },
     config: { duration: 2000 },
     delay: "1000"
@@ -22,6 +21,9 @@ export default function Buttons(props) {
           onMouseOver={() => {
             props.action("tires");
           }}
+          onMouseDown={() => {
+            props.action("tiresButtonPressed");
+          }}
         >
           Tires
         </button>
@@ -31,6 +33,9 @@ export default function Buttons(props) {
           onMouseOver={() => {
             props.action("battery");
           }}
+          onMouseDown={() => {
+            props.action("batteryButtonPressed");
+          }}
         >
           Batteries
         </button>
@@ -39,6 +44,9 @@ export default function Buttons(props) {
           className="btn btn-secondary btn-block"
           onMouseOver={() => {
             props.action("drivetrain");
+          }}
+          onMouseDown={() => {
+            props.action("driveButtonPressed");
           }}
         >
           Drivetrain

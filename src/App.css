@@ -154,7 +154,7 @@
 
 .car-bg{
   background-image: url(/images/model3-full.png);
-  z-index: 1000;
+  /* z-index: 1000; */
 }
 
 .chart-box{
