@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import { useTransition, animated } from 'react-spring';
-import { Switch, Route, __RouterContext } from 'react-router-dom';
-import PieChart from './PieChart';
-import TirePressure from './TirePressure';
-import ZoomPan from './ZoomPan';
+import { useTransition, animated } from "react-spring";
+import { Switch, Route, __RouterContext } from "react-router-dom";
+import PieChart from "./PieChart";
+import TirePressure from "./TirePressure";
+import ZoomPan from "./ZoomPan";
 
 export default function ViewPane() {
   const { location } = useContext(__RouterContext);

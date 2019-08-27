@@ -9,7 +9,7 @@ export default class ZoomPan extends Component {
     this.state = { data: [] };
   }
 
-  componentDidMount(){
+  componentDidMount() {
     var cblade = new window.ClearBlade();
     cblade.init({
       URI: "https://platform.clearblade.com", // e.g., 'https://platform.clearblade.com/'
@@ -42,7 +42,7 @@ export default class ZoomPan extends Component {
               dps.push({ x: i++, y: row.data.sensorvalue });
               return false;
             });
-            this.setState({ data: dps })
+            this.setState({ data: dps });
           }
         });
       }
@@ -70,8 +70,7 @@ export default class ZoomPan extends Component {
 
     return (
       <div>
-        <CanvasJSChart
-          options={options}/>
+        <CanvasJSChart options={options} />
         {/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
       </div>
     );

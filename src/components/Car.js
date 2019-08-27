@@ -81,7 +81,7 @@ export default function Car(props) {
           zIndex: props.action === "batteryButtonPressed" ? 1000 : 0
         }}
       >
-        <PieChart action={props.action}/>
+        <PieChart action={props.action} />
       </animated.div>
 
       <animated.div

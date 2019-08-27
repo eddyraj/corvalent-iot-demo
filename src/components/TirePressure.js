@@ -1,35 +1,35 @@
 import ReactSpeedometer from "react-d3-speedometer";
-import React, {Component} from "react";
+import React, { Component } from "react";
 import "clearblade-js-client/lib/mqttws31";
 import "clearblade-js-client";
 
 export default class TirePressure extends Component {
-state = { data: '' }
+  state = { data: "" };
 
   componentDidMount() {
     var cb = new window.ClearBlade();
     cb.init({
-        email: "eddy.rajiah@gmail.com",
-        password: "123456",
-        systemKey: "f0dcc1d50bfed7d7d09df097fe51",
-        systemSecret: "F0DCC1D50BA4FBD1DE828BF9DCA401",
-        callback: initCallback.bind(this)
+      email: "eddy.rajiah@gmail.com",
+      password: "123456",
+      systemKey: "f0dcc1d50bfed7d7d09df097fe51",
+      systemSecret: "F0DCC1D50BA4FBD1DE828BF9DCA401",
+      callback: initCallback.bind(this)
     });
 
     function initCallback() {
-        const msg = cb.Messaging({useSSL: true }, err => {
-          if (!err) {
-              console.log("subscribed");
-            msg.subscribe("corvalent/tiresSensor", {}, msg => {
-              //console.log("fooooo", msg);
-              var data = JSON.parse(msg);
-              this.setState({data});
-            });
-          } else {
-            console.log(err); 
-          }
-        });
-      }
+      const msg = cb.Messaging({ useSSL: true }, err => {
+        if (!err) {
+          console.log("subscribed");
+          msg.subscribe("corvalent/tiresSensor", {}, msg => {
+            //console.log("fooooo", msg);
+            var data = JSON.parse(msg);
+            this.setState({ data });
+          });
+        } else {
+          console.log(err);
+        }
+      });
+    }
   }
 
   render() {

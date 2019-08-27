@@ -10,20 +10,20 @@ import "bootstrap/dist/css/bootstrap.min.css";
 class App extends Component {
   state = {
     clicked: false,
-    action: 'default'
-  }
+    action: "default"
+  };
 
-  clicked = (e) => {
+  clicked = e => {
     this.setState({
       clicked: e
-    })
-  }
+    });
+  };
 
-  setAction = (e) => {
+  setAction = e => {
     this.setState({
-      action: e 
-    })
-  }
+      action: e
+    });
+  };
   render() {
     return (
       <>
@@ -32,16 +32,19 @@ class App extends Component {
             <div className="bg-light align-items-center justify-content-center flex-fill cover-container">
               <div className="col-12">
                 <div className="row">
-                  <Logo action={this.setAction}/>
+                  <Logo action={this.setAction} />
                   <Header />
                 </div>
               </div>
               <div className="row">
                 <div className="col-2">
-                  <Buttons clicked={this.state.clicked} action={this.setAction}/>
+                  <Buttons
+                    clicked={this.state.clicked}
+                    action={this.setAction}
+                  />
                 </div>
                 <div className="col-10">
-                  <Car clicked={this.clicked} action={this.state.action}/>
+                  <Car clicked={this.clicked} action={this.state.action} />
                 </div>
               </div>
             </div>
