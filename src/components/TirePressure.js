@@ -2,56 +2,54 @@ import ReactSpeedometer from "react-d3-speedometer";
 import React, {Component} from "react";
 
 export default class TirePressure extends Component {
-  constructor() {
-    super();
-    this.state = { data: [] };
-  }
+state = { data: '' }
 
   componentDidMount() {
-    // var client = new window.Paho.MQTT.Client(
-    //     "broker.mqttdashboard.com",
-    //     8000,
-    //     "clientId-0bJPiuAtD8"
-    //   );
+    var client = new window.Paho.MQTT.Client(
+        "broker.mqttdashboard.com",
+        8000,
+        "clientId-0bJPiuAtD8"
+      );
 
-    // var options = {
-    //     timeout:3,
-    //     onSuccess: onConnect
-    // }
+    var options = {
+        timeout:3,
+        onSuccess: onConnect
+    }
 
-    // client.onMessageArrived = onMessageArrived;
-    // client.connect(options);
+    client.onMessageArrived = onMessageArrived.bind(this);
+    client.connect(options);
 
-    // function onConnect(){
-    //     console.log('Connected');
-    //     client.subscribe("sensor1");
-    // }
+    function onConnect(){
+        console.log('Connected - subscribe');
+        client.subscribe("corvalent/sensor1");
+    }
 
-    // function onMessageArrived(msg){
-    //     console.log("message rec: " + msg.payloadString + " topic: " + msg.destinationName);
-    // }
+    function onMessageArrived(msg){
+        var data = JSON.parse(msg.payloadString);
+        this.setState({data});
+    }
 
-    var cb = new window.ClearBlade();
-    cb.init({
-        email: "admin@admin.com",
-        password: "admin",
-        systemKey: "f0dcc1d50bfed7d7d09df097fe51",
-        systemSecret: "F0DCC1D50BA4FBD1DE828BF9DCA401",
-        callback: initCallback.bind(this)
-    });
+    // var cb = new window.ClearBlade();
+    // cb.init({
+    //     email: "admin@admin.com",
+    //     password: "admin",
+    //     systemKey: "f0dcc1d50bfed7d7d09df097fe51",
+    //     systemSecret: "F0DCC1D50BA4FBD1DE828BF9DCA401",
+    //     callback: initCallback.bind(this)
+    // });
 
-    function initCallback() {
-        const msg = cb.Messaging({ ports: [8903], useSSL: true }, err => {
-          if (!err) {
-              console.log("subscribe");
-            msg.subscribe("corvalent/sensor0", {}, msg => {
-              console.log("fooooo", msg);
-            });
-          } else {
-            console.log(err); 
-          }
-        });
-      }
+    // function initCallback() {
+    //     const msg = cb.Messaging({ ports: [8903], useSSL: true }, err => {
+    //       if (!err) {
+    //           console.log("subscribe");
+    //         msg.subscribe("corvalent/sensor0", {}, msg => {
+    //           console.log("fooooo", msg);
+    //         });
+    //       } else {
+    //         console.log(err); 
+    //       }
+    //     });
+    //   }
 
     // function initCallback(err, cb) {
     //   // err is a boolean, cb has APIs and constructors attached
@@ -95,7 +93,7 @@ export default class TirePressure extends Component {
               fluidWidth={true}
               minValue={10}
               maxValue={50}
-              value={36}
+              value={this.state.data.sensor1}
               needleColor="#6C757D"
               segmentColors={[
                 "#FF461C",
@@ -116,7 +114,7 @@ export default class TirePressure extends Component {
               fluidWidth={true}
               minValue={10}
               maxValue={50}
-              value={37}
+              value={this.state.data.sensor2}
               needleColor="#6C757D"
               segmentColors={[
                 "#FF461C",
@@ -139,7 +137,7 @@ export default class TirePressure extends Component {
               fluidWidth={true}
               minValue={10}
               maxValue={50}
-              value={36}
+              value={this.state.data.sensor3}
               needleColor="#6C757D"
               segmentColors={[
                 "#FF461C",
@@ -160,7 +158,7 @@ export default class TirePressure extends Component {
               fluidWidth={true}
               minValue={10}
               maxValue={50}
-              value={37}
+              value={this.state.data.sensor4}
               needleColor="#6C757D"
               segmentColors={[
                 "#FF461C",

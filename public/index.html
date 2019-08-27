@@ -18,5 +18,53 @@
   <noscript>You need to enable JavaScript to run this app.</noscript>
   <div id="root"></div>
 </body>
+<script>
+var client = new window.Paho.MQTT.Client(
+        "broker.mqttdashboard.com",
+        8000,
+        "clientId-0bJPiuAtD9090099"
+      );
+
+    var options = {
+        timeout:3,
+        onSuccess: onConnect,
+        onFailure: onFailure
+    }
+
+    var createRandomValue = function(min, max){
+        return Math.floor(Math.random() * (max - min) + min);
+    }
+
+    var genSensorData = function(){
+        var data = {};
+        data.sensor1 = createRandomValue(20,40);
+        data.sensor2 = createRandomValue(20,40);
+        data.sensor3 = createRandomValue(20,40);
+        data.sensor4 = createRandomValue(20,40);
+        return JSON.stringify(data);
+    }
+
+    var genMessage = function(){
+        var message = new window.Paho.MQTT.Message(genSensorData());
+        message.destinationName = "corvalent/sensor1";
+        return message
+    }
+
+    client.connect(options);
+
+    function onFailure(){
+        console.log("Failed to connect - reconnecting...");
+        setTimeout(client.connect(options), 5000);
+    }
+
+    function onConnect(){
+        console.log('Connected - publish');
+
+        setInterval(() => {
+            console.log("Sending message...");
+            client.send(genMessage());
+        }, 3000);
+    }
+</script>
 
 </html>

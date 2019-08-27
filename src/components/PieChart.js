@@ -4,7 +4,6 @@ import CanvasJSReact from '../canvasjs.react';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
  
 export default class PieChart extends Component {	
-
 	render() {
 		const options = {
 			animationEnabled: true,

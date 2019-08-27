@@ -5,7 +5,7 @@ import TirePressure from "./TirePressure";
 import ZoomPan from "./ZoomPan";
 
 export default function Car(props) {
-  const [flipped, set] = useState(false);
+  const [flipped] = useState(false);
   const transition = useSpring({
     from: {
       left: "20%",

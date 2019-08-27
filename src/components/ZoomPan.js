@@ -40,6 +40,7 @@ export default class ZoomPan extends Component {
             var i = 0;
             rows.map(row => {
               dps.push({ x: i++, y: row.data.sensorvalue });
+              return false;
             });
             this.setState({ data: dps })
           }
